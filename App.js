@@ -1,6 +1,15 @@
 //https://www.geoapify.com/tutorial/how-to-implement-geocoding-javascript-tutorial
 
 let map;
+let markers = []
+
+class Marker {
+  constructor(lat, lng, addressStr) {
+    this.lat = lat;
+    this.lng = lng;
+    this.addressStr = addressStr;
+  }
+}
 
 navigator.geolocation.getCurrentPosition(
   function (position) {
@@ -10,6 +19,18 @@ navigator.geolocation.getCurrentPosition(
     const coords = [latitude, longitude]
 
     map = L.map('map').setView(coords, 13);
+
+    if (localStorage.length > 0) {
+      markers = JSON.parse(localStorage.getItem("markers"));
+
+      for (let markerInfo of markers) {
+        console.log(markerInfo)
+
+        L.marker([markerInfo.lat, markerInfo.lng]).addTo(map)
+          .bindPopup(markerInfo.addressStr)
+          .openPopup()
+      }
+    }
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -71,36 +92,22 @@ function geocodeAddress() {
       document.getElementById("city").value = foundAddress.properties.city || '';
       document.getElementById("state").value = foundAddress.properties.state || '';
       document.getElementById("country").value = foundAddress.properties.country || '';
-
   
       const lat = foundAddress.properties.lat;
       const lng = foundAddress.properties.lon;
+      const addressStr = foundAddress.properties.housenumber +" "+ foundAddress.properties.street
+      const markerInfo = new Marker(lat, lng, addressStr);
+      markers.push(markerInfo)
+      
+      localStorage.setItem("markers", JSON.stringify(markers))
 
-      console.log(lat, lng)
       L.marker([lat, lng]).addTo(map)
       // fix address
-        .bindPopup(foundAddress.properties.housenumber, foundAddress.properties.street)
+        .bindPopup(markerInfo.addressStr)
         .openPopup();
+        // localStorage.setItem("lastname", "Smith");
+        
 
       document.getElementById("status").textContent = `Found address: ${foundAddress.properties.formatted}`;
     });
-
-
-// // Marker to save the position of found address
-// let marker;
-//   // remove the previously added marker
-//   if (marker) {
-//     marker.remove();
-  // }
-
-  // fetch(geocodingUrl).then(result => result.json())
-  //   .then(featureCollection => {
-
-
-
-  //     // add a new marker and adjust the map view
-  //     marker = L.marker(new L.LatLng(foundAddress.properties.lat, foundAddress.properties.lon)).addTo(map);
-  //     map.panTo(new L.LatLng(foundAddress.properties.lat, foundAddress.properties.lon));
-  //   });
-
-}
+  }
