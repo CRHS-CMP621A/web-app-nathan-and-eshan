@@ -2,6 +2,8 @@
 
 let map;
 let markers = []
+let Remove = document.querySelector(".remove")
+
 
 class Marker {
   constructor(lat, lng, addressStr) {
@@ -111,3 +113,8 @@ function geocodeAddress() {
       document.getElementById("status").textContent = `Found address: ${foundAddress.properties.formatted}`;
     });
   }
+  function Remove_marker(){
+    localStorage.clear();
+  }
+
+Remove.addEventListener( "click" , Remove_marker)

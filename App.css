@@ -1,6 +1,9 @@
 #map {
+    display: flex;
+    justify-content: flex-end;
     height: 400px;
     width: 800px;
+    grid-area:map;
 }
 
 html,
@@ -32,8 +35,11 @@ body,
 .results {
     padding: 10px;
     display: flex;
+    justify-content: end;
     flex-direction: column;
-    min-width: 400px;
+    align-self: flex-end;
+    max-width: 400px;
+  grid-area:info;
 }
 
 .status {
@@ -43,3 +49,4 @@ body,
 #my-map {
   flex: 1;
 }
+
