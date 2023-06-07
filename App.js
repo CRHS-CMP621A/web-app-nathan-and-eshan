@@ -104,10 +104,10 @@ function geocodeAddress() {
       localStorage.setItem("markers", JSON.stringify(markers))
 
       L.marker([lat, lng]).addTo(map)
-      // fix address
+   
         .bindPopup(markerInfo.addressStr)
         .openPopup();
-        // localStorage.setItem("lastname", "Smith");
+      
         
 
       document.getElementById("status").textContent = `Found address: ${foundAddress.properties.formatted}`;
