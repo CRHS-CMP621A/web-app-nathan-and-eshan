@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>GeoLocation API - JS Tutorial</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+  <link href="App.css" rel="stylesheet" />
+  <div class="address-line">
+
+  </div>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  </head>
+
+  <body>
+
+<!-- result address form -->
+    <div class="address-line">
+      <input id="address" type="text" placeholder="Enter address to search"><button onclick="geocodeAddress()">Geocode</button>
+    </div>
+    <div class="results">
+      <label for="name">Name:</label>          
+      <input id="name" type="text" readonly />
+      <label for="house-number">House number:</label>          
+      <input id="house-number" type="text" readonly />
+      <label for="street">Street:</label>          
+      <input id="street" type="text" readonly />
+      <label for="postcode">Postcode:</label>          
+      <input id="postcode" type="text" readonly />
+      <label for="city">City:</label>          
+      <input id="city" type="text" readonly />
+      <label for="state">State:</label>          
+      <input id="state" type="text" readonly />
+      <label for="country">Country:</label>          
+      <input id="country" type="text" readonly />
+    </div>
+    <div class="status">
+      <span id="status">Enter address and press "Geocode" button</span>
+    </div>
+
+    <button class = "remove"> Remove Markers </button>
+    <!-- <button type="button" name="button" onClick="remove()">Remove Markers</button> -->
+
+
+
+
+
+    <h1>GeoMarker</h1>
+    <div id="map"> </div> 
+    <script src="App.js"></script>
+  </body>
+</html>
